@@ -25,7 +25,11 @@ elif [[ "$OSTYPE" == "linux"* ]]; then
     fi
     sudo apt update
     install_package() {
-        sudo apt install -y "$@"
+        if $@ --version &>/dev/null; then
+            echo "$@ is already installed. Skipping..."
+        else
+            sudo apt install -y "$@"
+        fi
     }
 
 else

@@ -7,14 +7,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find \
-        ~/git \
-        ~/git/javascript \
-        ~/git/sandboxes \
-        ~/git/games \
-        ~/.local/dotfiles \
-        ~/.local/dotfiles/.config \
-        -mindepth 1 -maxdepth 1 -type d | fzf)
+    locations=$(eval realpath $(cat ~/personal/dotfiles/personal/.tmux-project-locations))
+    selected=$(find $locations -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
