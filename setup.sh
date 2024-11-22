@@ -62,8 +62,12 @@ create_link() {
 
 # List of packages to install
 PACKAGES=(
+    gcc
     tmux
-    nvim
+    neovim
+    fzf
+    i3
+    alacritty
 )
 
 # Install each package in the list
@@ -78,4 +82,7 @@ TOP=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 
 create_link $TOP/.config/tmux ~/.config/tmux
 create_link $TOP/.config/nvim ~/.config/nvim
+
+echo "alias gis='git status'" >> ~/.bashrc
+source ~/.bashrc
 
