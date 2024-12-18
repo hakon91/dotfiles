@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -11,28 +12,22 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
-vim.keymap.set("n", "<leader>vwm", function()
-    require("vim-with-me").StartVimWithMe()
-end)
-vim.keymap.set("n", "<leader>svwm", function()
-    require("vim-with-me").StopVimWithMe()
-end)
-
 -- Show lsp message as a floating mesage box
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
--- Copy lsp message 
-vim.api.nvim_set_keymap('n', '<leader>ec', [[:lua YankDiagnosticError()<CR>]],
-  { noremap = true, silent = true, desc = "Copy error" })
+-- Copy lsp message
+-- This is still working progress
+-- vim.api.nvim_set_keymap('n', '<leader>ec', [[:lua YankDiagnosticError()<CR>]],
+--   { noremap = true, silent = true, desc = "Copy error" })
 
-function YankDiagnosticError()
-  vim.diagnostic.open_float()
-  vim.diagnostic.open_float()
-  local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
-  vim.cmd("normal! j")                 -- move down one row
-  vim.cmd("normal! VG")                -- select everything from that row down
-  vim.cmd("normal! y")                 -- yank selected text
-  --vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
-end
+-- function YankDiagnosticError()
+--   vim.diagnostic.open_float()
+--   vim.diagnostic.open_float()
+--   local win_id = vim.fn.win_getid()    -- get the window ID of the floating window
+--   vim.cmd("normal! j")                 -- move down one row
+--   vim.cmd("normal! VG")                -- select everything from that row down
+--   vim.cmd("normal! y")                 -- yank selected text
+--   --vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
+-- end
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -47,7 +42,9 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+if not jit.os == 'Windows' then
+    vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+end
 
 -- Format entire file
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -58,7 +55,9 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+if not jit.os == 'Windows' then
+  vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+end
 
 vim.keymap.set(
     "n",
