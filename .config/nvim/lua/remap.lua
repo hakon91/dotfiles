@@ -13,7 +13,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
 -- Show lsp message as a floating mesage box
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>em", vim.diagnostic.open_float)
 -- Copy lsp message
 -- This is still working progress
 -- vim.api.nvim_set_keymap('n', '<leader>ec', [[:lua YankDiagnosticError()<CR>]],
