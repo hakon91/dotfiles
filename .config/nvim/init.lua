@@ -1,7 +1,11 @@
 require('remap')
 if vim.g.vscode then
-	require('nvim-in-vscode')
+    require('nvim-in-vscode')
 else
-	require('hakon')
+    if jit.os == 'Windows' then
+        require('windows')
+    else
+        require('hakon')
+    end
     ColorMyPencils()
 end
