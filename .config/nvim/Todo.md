@@ -17,3 +17,22 @@
       'TamaMcGlinn/quickfixdd',
       event = 'VeryLazy'
     }
+2. Found some diff keymaps. What is that?
+    -- Diff vim.keymaps
+    vim.keymap.set("n", "<leader>cc", ":diffput<CR>") -- put diff from current to other during diff
+    vim.keymap.set("n", "<leader>cj", ":diffget 1<CR>") -- get diff from left (local) during merge
+    vim.keymap.set("n", "<leader>ck", ":diffget 3<CR>") -- get diff from right (remote) during merge
+    vim.keymap.set("n", "<leader>cn", "]c") -- next diff hunk
+    vim.keymap.set("n", "<leader>cp", "[c") -- previous diff hunk
+3. Should I use some of these keymaps for telescope?
+    -- Telescope
+    vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, {})
+    vim.keymap.set('n', '<leader>pg', require('telescope.builtin').live_grep, {})
+    vim.keymap.set('n', '<leader>pfs', require('telescope.builtin').current_buffer_fuzzy_find, {})
+    vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files, {})
+    vim.keymap.set('n', '<leader>h', require('telescope.builtin').help_tags, {})
+    vim.keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
+    vim.keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})
+    vim.keymap.set('n', '<leader>fm', function() require('telescope.builtin').treesitter({default_text=":method:"}) end)
+    -- Might add later if it will be useful
+    -- vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
