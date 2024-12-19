@@ -29,10 +29,10 @@ vim.keymap.set("n", "<leader>em", vim.diagnostic.open_float)
 --   --vim.api.nvim_win_close(win_id, true) -- close the floating window by its ID
 -- end
 
--- greatest remap ever
+-- greatest keymap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- next greatest remap ever : asbjornHaland
+-- next greatest keymap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 

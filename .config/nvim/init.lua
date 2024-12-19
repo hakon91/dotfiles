@@ -1,4 +1,4 @@
-require('remap')
+require('keymaps')
 if vim.g.vscode then
     require('nvim-in-vscode')
 else
