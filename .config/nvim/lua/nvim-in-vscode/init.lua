@@ -1,1 +1,1 @@
-print('hello from vscode')
+require('nvim-in-vscode.config.set')
