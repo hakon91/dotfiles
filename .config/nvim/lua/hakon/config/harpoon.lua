@@ -1,5 +1,11 @@
+-- Makes it very easy to switch quickly between files
 return {
+    -- https://github.com/ThePrimeagen/harpoon
     "theprimeagen/harpoon",
+    dependencies = {
+    -- https://github.com/nvim-lua/plenary.nvim
+    "nvim-lua/plenary.nvim",
+    },
 
     config = function ()
         local mark = require("harpoon.mark")
