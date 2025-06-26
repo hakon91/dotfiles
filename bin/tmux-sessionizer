@@ -4,10 +4,12 @@
 # It creates a new tmux session if needed.
 # s/o to theprimagen
 
+TOP=$(dirname "$(realpath "${BASH_SOURCE[0]}/..")")
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    locations=$(eval realpath $(cat ~/personal/dotfiles/personal/.tmux-project-locations))
+    locations=$(eval realpath $(cat $TOP/personal/.tmux-search-locations))
     selected=$(find $locations -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
