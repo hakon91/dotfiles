@@ -15,8 +15,14 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 
+vim.keymap.set('n', '<C-_>', ':normal gcc<CR>')
+vim.keymap.set('v', '<C-_>', '<Esc>:normal gvgc<CR>')
+
+
 -- Show lsp message as a floating mesage box
 vim.keymap.set("n", "<leader>em", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev)
 -- Copy lsp message
 -- This is still working progress
 -- vim.api.nvim_set_keymap('n', '<leader>ec', [[:lua YankDiagnosticError()<CR>]],
@@ -113,5 +119,18 @@ vim.keymap.set("n", '<leader>dh', '<cmd>Telescope dap commands<cr>')
 vim.keymap.set("n", '<leader>de', function() require('telescope.builtin').diagnostics({default_text=":E:"}) end)
 
 -- CMake
-vim.keymap.set("n", "<C-S-B>", ":CMakeBuild<CR>")
-vim.keymap.set("n", "<C-B>", ":CMakeRun<CR>")
+vim.keymap.set("n", "<F5>", ":CMakeRun<CR>")
+
+-- Namu.nvim
+-- This is a plugin for jumping to LSP symbols
+vim.keymap.set("n", "<C-S-O>", ":Namu symbols<cr>", {
+    desc = "Jump to LSP symbol",
+    silent = true,
+});
+
+-- Overseer.nvim
+-- Makes it possible to run .vscode tasks
+vim.keymap.set("n", "<C-S-B>", ":OverseerRun<cr>", {
+    desc = "Run Overseer task",
+    silent = true,
+});

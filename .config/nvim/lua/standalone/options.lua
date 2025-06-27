@@ -1,5 +1,5 @@
 -- Session Management
-vim.opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Line Numbers
 vim.opt.relativenumber = true
@@ -43,7 +43,7 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 vim.diagnostic.config {
-  float = { border = "rounded" }, -- add border to diagnostic popups
+    float = { border = "rounded" }, -- add border to diagnostic popups
 }
 
 
@@ -65,3 +65,16 @@ vim.opt.mouse = ""
 vim.opt.foldlevel = 20
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- Utilize Treesitter folds
+
+-- Remove whitespace on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = { "*" },
+    callback = function()
+        -- Save the current cursor position
+        local cursor_pos = vim.api.nvim_win_get_cursor(0)
+        -- Remove trailing whitespace
+        vim.cmd([[%s/\s\+$//e]])
+        -- Restore the cursor position
+        vim.api.nvim_win_set_cursor(0, cursor_pos)
+    end,
+})
