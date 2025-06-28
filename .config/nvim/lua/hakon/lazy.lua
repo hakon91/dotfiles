@@ -26,6 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { import = "hakon.config" },
+        { import = "hakon.config.git" },
 
     },
     -- automatically check for plugin updates
